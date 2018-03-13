@@ -1,9 +1,20 @@
 import sqlite3 
-from customer_points import Customer
 from validate_email import validate_email
-conn = sqlite3.connect('customer_points.db')
+conn = sqlite3.connect('amber.db')
 c = conn.cursor()
-
+c.execute("""CREATE TABLE IF NOT EXISTS amber(
+                first text,
+                last text,
+                points integer,
+                email text
+                   )""")
+#commits current transaction and changes
+c.execute("INSERT INTO amber VALUES('Horatio', 'Caine', 456, 'hcaine@dustymail.com')")
+c.execute("INSERT INTO amber VALUES('Dave', 'Folkson', 58600, 'dfolkson@dustymail.com')")
+c.execute("INSERT INTO amber VALUES('Callie', 'Dusquene', 78, 'caldusquene@dustymail.com')")
+c.execute("INSERT INTO amber VALUES('Kimberly', 'Vaughn', 100,'kimvee@dustymail.com' )")
+c.execute("INSERT INTO amber VALUES('Luke', 'Dennison', 325, 'uncleluke@dustymail.com')")
+conn.commit()
 def returning_email(email):
         email = validate_email(email)
         return email
@@ -62,24 +73,24 @@ def enter_store():
     else:
         ("Get some help.Goodbye.")
         
-    c.execute("INSERT INTO customers VALUES(?, ?, ?, ?)", (first_name, last_name,customer_points, new_email))    
+   # c.execute("INSERT INTO customers VALUES(?, ?, ?, ?)", (first_name, last_name,customer_points, new_email))    
     
 #allows to excute some sql commands
 
 #create customer table that holds first, name,last name, and points
 #c for the cursor we've created
-c.execute("""CREATE TABLE IF NOT EXISTS customer(
-                   first text,
-                  last text,
-                 points integer
-                 email text
-                   )""")
+#c.execute("""CREATE TABLE IF NOT EXISTS amber(
+#                  first text,
+ #                 last text,
+ #                 points integer
+  #                email text
+   #               )""")
 #commits current transaction and changes
-#c.execute("INSERT INTO customers VALUES('Horatio', 'Caine', 456, 'hcaine@dustymail.com')")
-#c.execute("INSERT INTO customers VALUES('Dave', 'Folkson', 58600, 'dfolkson@dustymail.com')")
-#c.execute("INSERT INTO customers VALUES('Callie', 'Dusquene', 78, 'caldusquene@dustymail.com')")
-#c.execute("INSERT INTO customers VALUES('Kimberly', 'Vaughn', 100,'kimvee@dustymail.com' )")
-#c.execute("INSERT INTO customers VALUES('Luke', 'Dennison', 325, 'uncleluke@dustymail.com')")
+#c.execute("INSERT INTO amber VALUES('Horatio', 'Caine', 456, 'hcaine@dustymail.com')")
+#c.execute("INSERT INTO amber VALUES('Dave', 'Folkson', 58600, 'dfolkson@dustymail.com')")
+#c.execute("INSERT INTO amber VALUES('Callie', 'Dusquene', 78, 'caldusquene@dustymail.com')")
+#c.execute("INSERT INTO amber VALUES('Kimberly', 'Vaughn', 100,'kimvee@dustymail.com' )")
+#c.execute("INSERT INTO amber VALUES('Luke', 'Dennison', 325, 'uncleluke@dustymail.com')")
 #conn.commit()
    
         
